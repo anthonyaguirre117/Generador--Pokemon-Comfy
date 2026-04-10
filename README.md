@@ -41,6 +41,9 @@ Puedes ejecutar este flujo de manera local o a través de un servidor en la nube
 
 ---
 
+![comfy-tony](https://github.com/user-attachments/assets/3d18a4d6-8c06-4055-bb9b-70273f29a405)
+
+
 ## 🧠 Estructura Técnica del JSON
 Para los desarrolladores interesados en la API, el archivo JSON de este repositorio estructura el flujo de la siguiente manera:
 * **Nodos 11 y 12:** Inicialización de pesos matemáticos (Checkpoint + LoRA).
