@@ -41,11 +41,11 @@ Puedes ejecutar este flujo de manera local o a través de un servidor en la nube
 4. ¡Genera tu imagen!
 
 ---
-**Version 1**
+**Version 1 Guardado de imagen**
 ![comfy-tony](https://github.com/user-attachments/assets/e6257f5c-ad5d-4b2c-b393-df86fe7a619a)
 
 ---
-**Version 2**
+**Version 2 Guardado de imagen y aumento de tamaño guardar segunda imagen**
 <img width="1737" height="686" alt="image" src="https://github.com/user-attachments/assets/9fa0b0df-a9fd-4940-9a37-e5e242871bc6" />
 
 
