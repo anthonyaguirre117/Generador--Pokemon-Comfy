@@ -1,27 +1,27 @@
-# 🎮 Comfy-Tony: Generador de Imágenes Estilo Retro
+# Comfy-Tony: Generador de Imágenes Estilo Retro
 
-¡Bienvenido a **Comfy-Tony**! Este repositorio contiene un flujo de trabajo (workflow) optimizado para **ComfyUI**. Está diseñado para generar ilustraciones de alta calidad con un estilo retro/anime (específicamente enfocado en la temática de entrenadores Pokémon), utilizando Inteligencia Artificial generativa.
+¡Bienvenido a **Comfy-Tony**! Este repositorio contiene un flujo de trabajo optimizado para **ComfyUI**. Está diseñado para generar ilustraciones de alta calidad con un estilo retro/anime (específicamente enfocado en la temática de entrenadores Pokémon), utilizando Inteligencia Artificial generativa.
 
-Este proyecto fue creado como una implementación técnica de *Text-to-Image* demostrando la conexión lógica de nodos, modelos base y modificadores de estilo (LoRAs).
+Este proyecto fue creado como una implementación técnica demostrando la conexión lógica de nodos, modelos base y modificadores de estilo (LoRAs).
 
-## 🧩 ¿Qué hace este flujo?
+#Qué hace este flujo?
 El sistema toma instrucciones de texto en inglés (Prompts) y procesa la información a través del modelo Stable Diffusion 1.5. Utiliza un KSampler configurado con el algoritmo Euler para renderizar la imagen en 25 pasos, garantizando un balance ideal entre velocidad y detalle visual.
 
 ---
 
-## 🛠️ Requisitos Previos (Modelos necesarios)
+##Requisitos Previos (Modelos necesarios)
 
 Para que este flujo funcione en tu máquina local o entorno en la nube, la IA necesita sus "ingredientes". Asegúrate de descargar y colocar los siguientes archivos en sus carpetas correspondientes dentro de tu instalación de ComfyUI:
 
 1. **Checkpoint (Modelo Base):** * Archivo: `v1-5-pruned-emaonly-fp16.safetensors` (o cualquier equivalente SD 1.5).
-   * 📂 Ruta: `ComfyUI/models/checkpoints/`
+   * Ruta: `ComfyUI/models/checkpoints/`
 2. **LoRA (Modificador de Estilo):**
    * Archivo: *[ESCRIBE AQUÍ EL NOMBRE EXACTO DEL LORA QUE USASTE AL FINAL.safetensors]*
-   * 📂 Ruta: `ComfyUI/models/loras/`
+   * Ruta: `ComfyUI/models/loras/`
 
 ---
 
-## 🚀 Instrucciones de Uso
+##Instrucciones de Uso
 
 Puedes ejecutar este flujo de manera local o a través de un servidor en la nube (como RunPod o plataformas similares).
 
@@ -45,7 +45,7 @@ Puedes ejecutar este flujo de manera local o a través de un servidor en la nube
 
 
 
-## 🧠 Estructura Técnica del JSON
+## Estructura Técnica del JSON
 Para los desarrolladores interesados en la API, el archivo JSON de este repositorio estructura el flujo de la siguiente manera:
 * **Nodos 11 y 12:** Inicialización de pesos matemáticos (Checkpoint + LoRA).
 * **Nodos 13 y 14:** Codificación CLIP para el procesamiento del Lenguaje Natural (Prompts).
