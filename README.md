@@ -11,7 +11,7 @@ El sistema toma instrucciones de texto en inglés (Prompts) y procesa la informa
 
 ---
 
-##Requisitos Previos (Modelos necesarios)
+#**Requisitos Previos (Modelos necesarios)**
 
 Para que este flujo funcione en tu máquina local o entorno en la nube, la IA necesita sus "ingredientes". Asegúrate de descargar y colocar los siguientes archivos en sus carpetas correspondientes dentro de tu instalación de ComfyUI:
 
