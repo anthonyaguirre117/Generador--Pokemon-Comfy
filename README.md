@@ -1,126 +1,52 @@
-{
-  "11": {
-    "inputs": {
-      "ckpt_name": "v1-5-pruned-emaonly-fp16.safetensors"
-    },
-    "class_type": "CheckpointLoaderSimple",
-    "_meta": {
-      "title": "Cargar Punto de Control"
-    }
-  },
-  "12": {
-    "inputs": {
-      "lora_name": "flux1-pokemon_trainer_sprite_pixelart.safetensors",
-      "strength_model": 1,
-      "strength_clip": 1,
-      "model": [
-        "11",
-        0
-      ],
-      "clip": [
-        "11",
-        1
-      ]
-    },
-    "class_type": "LoraLoader",
-    "_meta": {
-      "title": "Cargar LoRA"
-    }
-  },
-  "13": {
-    "inputs": {
-      "text": "realistic, ",
-      "clip": [
-        "12",
-        1
-      ]
-    },
-    "class_type": "CLIPTextEncode",
-    "_meta": {
-      "title": "Codificar Texto CLIP (Prompt)"
-    }
-  },
-  "14": {
-    "inputs": {
-      "text": "pokemon, trainer, battle, fire, water",
-      "clip": [
-        "12",
-        1
-      ]
-    },
-    "class_type": "CLIPTextEncode",
-    "_meta": {
-      "title": "Codificar Texto CLIP (Prompt)"
-    }
-  },
-  "15": {
-    "inputs": {
-      "seed": 618807423325943,
-      "steps": 25,
-      "cfg": 8,
-      "sampler_name": "euler",
-      "scheduler": "simple",
-      "denoise": 1,
-      "model": [
-        "12",
-        0
-      ],
-      "positive": [
-        "14",
-        0
-      ],
-      "negative": [
-        "13",
-        0
-      ],
-      "latent_image": [
-        "16",
-        0
-      ]
-    },
-    "class_type": "KSampler",
-    "_meta": {
-      "title": "KSampler"
-    }
-  },
-  "16": {
-    "inputs": {
-      "width": 512,
-      "height": 512,
-      "batch_size": 1
-    },
-    "class_type": "EmptyLatentImage",
-    "_meta": {
-      "title": "Imagen Latente Vacía"
-    }
-  },
-  "17": {
-    "inputs": {
-      "samples": [
-        "15",
-        0
-      ],
-      "vae": [
-        "11",
-        2
-      ]
-    },
-    "class_type": "VAEDecode",
-    "_meta": {
-      "title": "Decodificación VAE"
-    }
-  },
-  "18": {
-    "inputs": {
-      "filename_prefix": "ComfyUI",
-      "images": [
-        "17",
-        0
-      ]
-    },
-    "class_type": "SaveImage",
-    "_meta": {
-      "title": "Guardar Imagen"
-    }
-  }
-}
+# 🎮 Comfy-Tony: Generador de Imágenes Estilo Retro
+
+¡Bienvenido a **Comfy-Tony**! Este repositorio contiene un flujo de trabajo (workflow) optimizado para **ComfyUI**. Está diseñado para generar ilustraciones de alta calidad con un estilo retro/anime (específicamente enfocado en la temática de entrenadores Pokémon), utilizando Inteligencia Artificial generativa.
+
+Este proyecto fue creado como una implementación técnica de *Text-to-Image* demostrando la conexión lógica de nodos, modelos base y modificadores de estilo (LoRAs).
+
+## 🧩 ¿Qué hace este flujo?
+El sistema toma instrucciones de texto en inglés (Prompts) y procesa la información a través del modelo Stable Diffusion 1.5. Utiliza un KSampler configurado con el algoritmo Euler para renderizar la imagen en 25 pasos, garantizando un balance ideal entre velocidad y detalle visual.
+
+---
+
+## 🛠️ Requisitos Previos (Modelos necesarios)
+
+Para que este flujo funcione en tu máquina local o entorno en la nube, la IA necesita sus "ingredientes". Asegúrate de descargar y colocar los siguientes archivos en sus carpetas correspondientes dentro de tu instalación de ComfyUI:
+
+1. **Checkpoint (Modelo Base):** * Archivo: `v1-5-pruned-emaonly-fp16.safetensors` (o cualquier equivalente SD 1.5).
+   * 📂 Ruta: `ComfyUI/models/checkpoints/`
+2. **LoRA (Modificador de Estilo):**
+   * Archivo: *[ESCRIBE AQUÍ EL NOMBRE EXACTO DEL LORA QUE USASTE AL FINAL.safetensors]*
+   * 📂 Ruta: `ComfyUI/models/loras/`
+
+---
+
+## 🚀 Instrucciones de Uso
+
+Puedes ejecutar este flujo de manera local o a través de un servidor en la nube (como RunPod o plataformas similares).
+
+### Opción A: Ejecución Local
+1. Clona este repositorio o descarga el archivo `flujo_comfy_tony.json`.
+2. Inicia tu servidor local de ComfyUI.
+3. Arrastra y suelta el archivo `.json` directamente sobre la interfaz web de ComfyUI en tu navegador. Los nodos se conectarán automáticamente.
+4. Verifica que los nodos **"Cargar Punto de Control"** y **"Cargar LoRA"** tengan seleccionados los modelos correctos.
+5. Modifica los textos (cajas verde y roja) con tus propias ideas y presiona **Queue Prompt**.
+
+### Opción B: Ejecución en la Nube (Cloud)
+1. Inicia tu entorno de ComfyUI virtual.
+2. Sube los modelos (Checkpoint y LoRA) utilizando el administrador de archivos de tu servidor a las rutas mencionadas arriba.
+3. Haz clic en el botón **Load** en el menú de ComfyUI y selecciona el archivo `.json` de este repositorio.
+4. *Nota importante:* Si los nodos de los modelos aparecen en rojo, haz clic en ellos y vuelve a seleccionar el archivo de la lista desplegable para actualizar la ruta del servidor.
+5. ¡Genera tu imagen!
+
+---
+
+## 🧠 Estructura Técnica del JSON
+Para los desarrolladores interesados en la API, el archivo JSON de este repositorio estructura el flujo de la siguiente manera:
+* **Nodos 11 y 12:** Inicialización de pesos matemáticos (Checkpoint + LoRA).
+* **Nodos 13 y 14:** Codificación CLIP para el procesamiento del Lenguaje Natural (Prompts).
+* **Nodo 15:** Motor KSampler (Seed dinámica, CFG: 8, Pasos: 25, Denoise: 1.0).
+* **Nodos 16, 17 y 18:** Definición del espacio latente (512x512), decodificación VAE y exportación final a PNG.
+
+---
+*Anthony Aguirre*
