@@ -1,4 +1,5 @@
-# Comfy-Tony: Generador de Imágenes Estilo Pokemon Retro
+# Comfy-Tony: Generador de Imágenes Estilo Pokemon Retro <img width="512" height="512" alt="188987" src="https://github.com/user-attachments/assets/f15f614d-472e-43be-97d4-2828b4df40df" />
+
 
 ¡Bienvenido a **Comfy-Tony**! Este repositorio contiene un flujo de trabajo optimizado para **ComfyUI**. Está diseñado para generar ilustraciones de alta calidad con un estilo retro/anime (específicamente enfocado en la temática de entrenadores Pokémon), utilizando Inteligencia Artificial generativa.
 
