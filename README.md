@@ -1,3 +1,4 @@
+<img width="1280" height="1278" alt="Poké_Ball_icon svg" src="https://github.com/user-attachments/assets/266ef622-d26d-42e3-9fe7-66c2297ce053" />
 # Comfy-Tony: Generador de Imágenes Estilo Pokemon Retro <img width="512" height="512" alt="188987" src="https://github.com/user-attachments/assets/f15f614d-472e-43be-97d4-2828b4df40df" />
 
 
