@@ -1,0 +1,276 @@
+{
+  "11": {
+    "inputs": {
+      "ckpt_name": "v1-5-pruned-emaonly-fp16.safetensors"
+    },
+    "class_type": "CheckpointLoaderSimple",
+    "_meta": {
+      "title": "Cargar Punto de Control"
+    }
+  },
+  "12": {
+    "inputs": {
+      "lora_name": "flux1-pokemon_trainer_sprite_pixelart.safetensors",
+      "strength_model": 1,
+      "strength_clip": 1,
+      "model": [
+        "11",
+        0
+      ],
+      "clip": [
+        "11",
+        1
+      ]
+    },
+    "class_type": "LoraLoader",
+    "_meta": {
+      "title": "Cargar LoRA"
+    }
+  },
+  "13": {
+    "inputs": {
+      "text": "realistic, ",
+      "clip": [
+        "12",
+        1
+      ]
+    },
+    "class_type": "CLIPTextEncode",
+    "_meta": {
+      "title": "Codificar Texto CLIP (Prompt)"
+    }
+  },
+  "14": {
+    "inputs": {
+      "text": "pokemon, battle, water\n",
+      "clip": [
+        "12",
+        1
+      ]
+    },
+    "class_type": "CLIPTextEncode",
+    "_meta": {
+      "title": "Codificar Texto CLIP (Prompt)"
+    }
+  },
+  "15": {
+    "inputs": {
+      "seed": 878933095322530,
+      "steps": 40,
+      "cfg": 8,
+      "sampler_name": "euler",
+      "scheduler": "simple",
+      "denoise": 1,
+      "model": [
+        "12",
+        0
+      ],
+      "positive": [
+        "14",
+        0
+      ],
+      "negative": [
+        "13",
+        0
+      ],
+      "latent_image": [
+        "21",
+        0
+      ]
+    },
+    "class_type": "KSampler",
+    "_meta": {
+      "title": "KSampler"
+    }
+  },
+  "17": {
+    "inputs": {
+      "samples": [
+        "15",
+        0
+      ],
+      "vae": [
+        "11",
+        2
+      ]
+    },
+    "class_type": "VAEDecode",
+    "_meta": {
+      "title": "Decodificación VAE"
+    }
+  },
+  "18": {
+    "inputs": {
+      "filename_prefix": "ComfyUI",
+      "images": [
+        "17",
+        0
+      ]
+    },
+    "class_type": "SaveImage",
+    "_meta": {
+      "title": "Guardar Imagen"
+    }
+  },
+  "21": {
+    "inputs": {
+      "width": 512,
+      "height": 512,
+      "batch_size": 1
+    },
+    "class_type": "EmptyLatentImage",
+    "_meta": {
+      "title": "Imagen Latente Vacía"
+    }
+  },
+  "22": {
+    "inputs": {
+      "model_name": "4x-UltraSharp.pth"
+    },
+    "class_type": "UpscaleModelLoader",
+    "_meta": {
+      "title": "Cargar Modelo de Escala Superior"
+    }
+  },
+  "24": {
+    "inputs": {
+      "filename_prefix": "ComfyUI",
+      "images": [
+        "25",
+        0
+      ]
+    },
+    "class_type": "SaveImage",
+    "_meta": {
+      "title": "Guardar Imagen"
+    }
+  },
+  "25": {
+    "inputs": {
+      "upscale_model": [
+        "22",
+        0
+      ],
+      "image": [
+        "17",
+        0
+      ]
+    },
+    "class_type": "ImageUpscaleWithModel",
+    "_meta": {
+      "title": "Ampliar Imagen (usando Modelo)"
+    }
+  },
+  "26": {
+    "inputs": {
+      "width": 512,
+      "height": 512,
+      "video_frames": 14,
+      "motion_bucket_id": 127,
+      "fps": 6,
+      "augmentation_level": 0,
+      "clip_vision": [
+        "31",
+        0
+      ],
+      "init_image": [
+        "17",
+        0
+      ],
+      "vae": [
+        "33",
+        2
+      ]
+    },
+    "class_type": "SVD_img2vid_Conditioning",
+    "_meta": {
+      "title": "SVD_img2vid_Acondicionamiento"
+    }
+  },
+  "28": {
+    "inputs": {
+      "seed": 534012992516057,
+      "steps": 40,
+      "cfg": 8,
+      "sampler_name": "euler",
+      "scheduler": "simple",
+      "denoise": 0.5,
+      "model": [
+        "33",
+        0
+      ],
+      "positive": [
+        "26",
+        0
+      ],
+      "negative": [
+        "26",
+        1
+      ],
+      "latent_image": [
+        "26",
+        2
+      ]
+    },
+    "class_type": "KSampler",
+    "_meta": {
+      "title": "KSampler"
+    }
+  },
+  "29": {
+    "inputs": {
+      "samples": [
+        "28",
+        0
+      ],
+      "vae": [
+        "33",
+        2
+      ]
+    },
+    "class_type": "VAEDecode",
+    "_meta": {
+      "title": "Decodificación VAE"
+    }
+  },
+  "31": {
+    "inputs": {
+      "clip_name": "clip_vision_g.safetensors"
+    },
+    "class_type": "CLIPVisionLoader",
+    "_meta": {
+      "title": "Cargar CLIP Vision"
+    }
+  },
+  "33": {
+    "inputs": {
+      "ckpt_name": "v1-5-pruned-emaonly-fp16.safetensors"
+    },
+    "class_type": "CheckpointLoaderSimple",
+    "_meta": {
+      "title": "Cargar Punto de Control"
+    }
+  },
+  "34": {
+    "inputs": {
+      "frame_rate": 8,
+      "loop_count": 0,
+      "filename_prefix": "AnimateDiff",
+      "format": "image/gif",
+      "pingpong": false,
+      "save_output": true,
+      "images": [
+        "29",
+        0
+      ],
+      "vae": [
+        "33",
+        2
+      ]
+    },
+    "class_type": "VHS_VideoCombine",
+    "_meta": {
+      "title": "Video Combine 🎥🅥🅗🅢"
+    }
+  }
+}
