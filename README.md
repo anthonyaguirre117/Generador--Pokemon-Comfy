@@ -23,18 +23,18 @@ Para que este flujo funcione en tu máquina local o entorno en la nube, la IA ne
 
 ---
 
-##Instrucciones de Uso
+#**Instrucciones de Uso**
 
 Puedes ejecutar este flujo de manera local o a través de un servidor en la nube (como RunPod o plataformas similares).
 
-### Opción A: Ejecución Local
+### **Opción A: Ejecución Local**
 1. Clona este repositorio o descarga el archivo `flujo_comfy_tony.json`.
 2. Inicia tu servidor local de ComfyUI.
 3. Arrastra y suelta el archivo `.json` directamente sobre la interfaz web de ComfyUI en tu navegador. Los nodos se conectarán automáticamente.
 4. Verifica que los nodos **"Cargar Punto de Control"** y **"Cargar LoRA"** tengan seleccionados los modelos correctos.
 5. Modifica los textos (cajas verde y roja) con tus propias ideas y presiona **Queue Prompt**.
 
-### Opción B: Ejecución en la Nube (Cloud)
+### **Opción B: Ejecución en la Nube (Cloud)**
 1. Inicia tu entorno de ComfyUI virtual.
 2. Sube los modelos (Checkpoint y LoRA) utilizando el administrador de archivos de tu servidor a las rutas mencionadas arriba.
 3. Haz clic en el botón **Load** en el menú de ComfyUI y selecciona el archivo `.json` de este repositorio.
@@ -46,7 +46,7 @@ Puedes ejecutar este flujo de manera local o a través de un servidor en la nube
 
 
 
-## Estructura Técnica del JSON
+## **Estructura Técnica del JSON**
 Para los desarrolladores interesados en la API, el archivo JSON de este repositorio estructura el flujo de la siguiente manera:
 * **Nodos 11 y 12:** Inicialización de pesos matemáticos (Checkpoint + LoRA).
 * **Nodos 13 y 14:** Codificación CLIP para el procesamiento del Lenguaje Natural (Prompts).
@@ -54,4 +54,4 @@ Para los desarrolladores interesados en la API, el archivo JSON de este reposito
 * **Nodos 16, 17 y 18:** Definición del espacio latente (512x512), decodificación VAE y exportación final a PNG.
 
 ---
-*Anthony Aguirre*
+**Anthony Aguirre**
