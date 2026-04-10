@@ -16,7 +16,7 @@ Para que este flujo funcione en tu máquina local o entorno en la nube, la IA ne
 1. **Checkpoint (Modelo Base):** * Archivo: `v1-5-pruned-emaonly-fp16.safetensors` (o cualquier equivalente SD 1.5).
    * Ruta: `ComfyUI/models/checkpoints/`
 2. **LoRA (Modificador de Estilo):**
-   * Archivo: *[ESCRIBE AQUÍ EL NOMBRE EXACTO DEL LORA QUE USASTE AL FINAL.safetensors]*
+   * Archivo: *[Pokemon Trainer Sprite PixelArt.safetensors]*
    * Ruta: `ComfyUI/models/loras/`
 
 ---
@@ -36,8 +36,7 @@ Puedes ejecutar este flujo de manera local o a través de un servidor en la nube
 1. Inicia tu entorno de ComfyUI virtual.
 2. Sube los modelos (Checkpoint y LoRA) utilizando el administrador de archivos de tu servidor a las rutas mencionadas arriba.
 3. Haz clic en el botón **Load** en el menú de ComfyUI y selecciona el archivo `.json` de este repositorio.
-4. *Nota importante:* Si los nodos de los modelos aparecen en rojo, haz clic en ellos y vuelve a seleccionar el archivo de la lista desplegable para actualizar la ruta del servidor.
-5. ¡Genera tu imagen!
+4. ¡Genera tu imagen!
 
 ---
 
