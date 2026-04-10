@@ -41,7 +41,8 @@ Puedes ejecutar este flujo de manera local o a través de un servidor en la nube
 
 ---
 
-![comfy-tony](https://github.com/user-attachments/assets/3d18a4d6-8c06-4055-bb9b-70273f29a405)
+![comfy-tony](https://github.com/user-attachments/assets/e6257f5c-ad5d-4b2c-b393-df86fe7a619a)
+
 
 
 ## 🧠 Estructura Técnica del JSON
