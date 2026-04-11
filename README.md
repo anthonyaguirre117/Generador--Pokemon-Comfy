@@ -58,12 +58,5 @@ Puedes ejecutar este flujo de manera local o a través de un servidor en la nube
 
 
 
-## **Estructura Técnica del JSON**
-Para los desarrolladores interesados en la API, el archivo JSON de este repositorio estructura el flujo de la siguiente manera:
-* **Nodos 11 y 12:** Inicialización de pesos matemáticos (Checkpoint + LoRA).
-* **Nodos 13 y 14:** Codificación CLIP para el procesamiento del Lenguaje Natural (Prompts).
-* **Nodo 15:** Motor KSampler (Seed dinámica, CFG: 8, Pasos: 25, Denoise: 1.0).
-* **Nodos 16, 17 y 18:** Definición del espacio latente (512x512), decodificación VAE y exportación final a PNG.
-
 ---
 **Anthony Aguirre**
