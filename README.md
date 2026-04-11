@@ -52,6 +52,9 @@ Puedes ejecutar este flujo de manera local o a través de un servidor en la nube
 **Version 3 Guardado de imagen y aumento de tamaño guardar segunda imagen y creacion de video corto (BETA)**
 <img width="1659" height="829" alt="image" src="https://github.com/user-attachments/assets/a6db342d-ed64-4b67-a5b1-40fb512bde2b" />
 
+---
+**Version 4 Guardado de imagen, aumento de tamaño en segunda imagen, cambmio de imagen con prompts nuevos y creacion de video (FINAL)**
+<img width="1812" height="906" alt="image" src="https://github.com/user-attachments/assets/cf936f1f-b08d-465b-92ea-0470db19650f" />
 
 
 
