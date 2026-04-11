@@ -1,0 +1,42 @@
+Anatomía del Flujo: Explicación de Nodo a Nodo
+Este flujo de trabajo se divide en 4 Fases Principales que operan de manera simultánea gracias a la ramificación de los tensores. A continuación se detalla la función lógica de cada componente:
+
+Fase 1: El Cerebro y el Motor de Movimiento
+Aquí se preparan los modelos de IA y se inyecta la capacidad de animación antes de empezar a dibujar.
+
+Cargar Punto de Control (Checkpoint): Es el cerebro principal. Carga el modelo base (Stable Diffusion 1.5) que contiene el conocimiento general de formas, colores e iluminación, junto con el diccionario VAE.
+
+Cargar LoRA: Funciona como un "filtro de estilo" anclado al cerebro principal. Inyecta los trazos específicos del estilo Pokemon Trainer sin consumir la memoria de un modelo completo.
+
+AnimateDiff Loader: El motor de video. Intercepta la señal del modelo antes de llegar al KSampler y le inyecta "tiempo" y coherencia de movimiento entre fotogramas.
+
+Fase 2: La Generación Base (Animación Original)
+Esta rama crea la primera versión de la idea a partir de la nada (Text-to-Image).
+
+Codificar Texto CLIP (Prompts): Traduce las palabras humanas (positivas y negativas) a vectores matemáticos que la IA puede entender para guiar el dibujo.
+
+Imagen Latente Vacía: Crea el lienzo matemático inicial (512x512). La clave aquí es el tamaño_del_lote en 14, lo que le ordena al sistema no crear una sola imagen, sino 14 lienzos secuenciales (fotogramas) para la animación.
+
+KSampler (Inferior): El corazón de la generación. Toma el ruido, los textos, el LoRA y el movimiento de AnimateDiff, y limpia la estática durante 20-30 iteraciones hasta revelar la composición.
+
+Decodificación VAE (Inferior): Traduce el lenguaje latente (matemático) que sale del KSampler a píxeles visibles (RGB).
+
+Video Combine: Recibe los 14 fotogramas en formato de píxeles y los empaqueta en un archivo animado secuencial (formato GIF/MP4).
+
+Fase 3: Post-Procesamiento (Escalado HD)
+Toma los resultados de la Fase 2 y mejora su resolución.
+
+Cargar Modelo de Escala Superior: Carga un modelo matemático especializado (como UltraSharp) diseñado para reconstruir píxeles faltantes.
+
+Ampliar Imagen (usando Modelo): Intercepta las imágenes de 512x512 que salieron de la primera decodificación VAE y multiplica su tamaño y nitidez (por ejemplo, a 1024x1024 o 2048x2048), exportándolas a través de un nodo de Guardar Imagen.
+
+Fase 4: Modificador de Realidad (Image-to-Image)
+Toma la animación original y la redibuja en un entorno totalmente nuevo sin perder el movimiento original.
+
+VAE Codificar: Hace la operación inversa. Toma los fotogramas de la Fase 2 (píxeles) y los vuelve a comprimir en datos matemáticos (espacio latente) para que la IA los pueda volver a modificar.
+
+Textos CLIP (Cyberpunk): Nuevas instrucciones que le dicen a la IA cómo alterar el entorno (luces de neón, lluvia, estilo ciberpunk).
+
+KSampler (Superior): El segundo motor. Al tener un deshacer_ruido en 0.60, no destruye la imagen original, sino que la usa como molde para aplicar las nuevas instrucciones visuales a lo largo de los 14 fotogramas.
+
+Decodificación VAE (Superior): Convierte esta nueva versión matemática modificada en los fotogramas finales, listos para guardarse o combinarse en un nuevo video.
